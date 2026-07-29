@@ -60,10 +60,13 @@
 
         <div class="col-md-6 text-center">
 
-            <img src="images/hospital.jpg" class="img-fluid rounded shadow">
+    <div class="image-box">
+        <img src="images/hospital.jpg"
+             class="img-fluid rounded shadow hospital-img"
+             alt="Hospital">
+    </div>
 
-        </div>
-
+</div>
     </div>
 </section>
 <section class="container py-5">

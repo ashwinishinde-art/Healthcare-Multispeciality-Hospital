@@ -72,6 +72,21 @@ color:green;
 text-align:center;
 font-weight:bold;
 }
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(255,255,255,.75),
+    rgba(255,255,255,.75)),
+    url("../images/appointment-bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
 </style>
 
 </head>

@@ -90,52 +90,96 @@ VALUES
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        .container{
-            width:400px;
-            margin:40px auto;
-            background:#fff;
-            padding:25px;
-            border-radius:10px;
-            box-shadow:0 0 10px gray;
-        }
 
-        input{
-            width:100%;
-            padding:10px;
-            margin:10px 0;
-        }
+body{
+    background:linear-gradient(135deg,#eef7ff,#ffffff,#eef7ff);
+}
 
-        button{
-            width:100%;
-            padding:12px;
-            background:#0077b6;
-            color:white;
-            border:none;
-            cursor:pointer;
-            font-size:18px;
-        }
+/* Registration Card */
+.container{
+    width:550px;
+    max-width:95%;
+    margin:40px auto;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:popup .7s ease;
+    transition:.4s;
+}
 
-        button:hover{
-            background:#023e8a;
-        }
+.container:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+}
 
-        h2{
-            text-align:center;
-            color:#0077b6;
-        }
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-        p{
-            text-align:center;
-            color:green;
-            font-weight:bold;
-        }
-        .alert{
-    border-radius:12px;
-    font-size:22px;
+/* Heading */
+h2{
+    text-align:center;
+    color:#0077b6;
+    font-size:48px;
     font-weight:bold;
-    padding:18px;
-    margin-bottom:20px;
-    animation:fadeIn 0.6s ease-in-out;
+    margin-bottom:30px;
+}
+
+/* Inputs & Select */
+input,
+select{
+    width:100%;
+    height:52px;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:12px;
+    transition:.3s;
+    font-size:16px;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#0d6efd;
+    box-shadow:0 0 10px rgba(13,110,253,.25);
+}
+
+/* Register Button */
+button{
+    width:100%;
+    height:55px;
+    margin-top:15px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#007bff,#00b4d8);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.4s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    background:linear-gradient(90deg,#0056d2,#0096c7);
+}
+
+/* Alert */
+.alert{
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    padding:15px;
+    animation:fadeIn .5s;
 }
 
 @keyframes fadeIn{
@@ -148,12 +192,102 @@ VALUES
         transform:translateY(0);
     }
 }
-select{
-width:100%;
-padding:10px;
-margin:10px 0;
+
+/* Password */
+.password-box{
+    position:relative;
+    margin:10px 0;
 }
-    </style>
+
+.password-box input{
+    padding-right:45px;
+}
+
+.toggle-password{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#666;
+    font-size:20px;
+    transition:.3s;
+}
+
+.toggle-password:hover{
+    color:#0d6efd;
+    transform:translateY(-50%) scale(1.2);
+}
+
+/* Links */
+a{
+    color:#0077b6;
+    text-decoration:none;
+    transition:.3s;
+}
+
+a:hover{
+    color:#0056b3;
+    text-decoration:underline;
+}
+
+/* Doctor Fields Animation */
+#doctorFields{
+    animation:fade .5s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial, sans-serif;
+    background:
+        linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)),
+        url("images/hospital-bg.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.25); /* kiwa rgba(255,255,255,0.15) */
+    z-index:-1;
+    animation:bgzoom 20s infinite alternate;
+}
+
+@keyframes bgzoom{
+    from{
+        background-size:100%;
+    }
+    to{
+        background-size:108%;
+    }
+}
+}
+.card{
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.3);
+}
+body{
+    background:url("images/register-bg.jpg") no-repeat center center/cover;
+    background-attachment:fixed;
+}
+</style>
 </head>
 
 <body>
@@ -174,8 +308,9 @@ Healthcare Multispeciality Hospital</div>
 
 <div class="container">
 
-<h2>Registration</h2>
-
+<h2>
+<i class="fas fa-user-plus"></i> Registration
+</h2>
 <?php
 if($message != "")
 {
@@ -216,12 +351,18 @@ minlength="10"
 title="Enter valid 10 digit mobile number"
 required>
 
-<input type="password"
-       name="password"
-       placeholder="Password"
-       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}"
-       title="Minimum 8 characters, one uppercase, one lowercase, one number and one special character."
-       required>
+<div class="password-box">
+    <input type="password"
+           id="password"
+           name="password"
+           class="form-control"
+           placeholder="Password"
+           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}"
+           title="Minimum 8 characters, one uppercase, one lowercase, one number and one special character."
+           required>
+
+    <i class="fa-solid fa-eye toggle-password" id="eye" onclick="togglePassword()"></i>
+</div>
 <select name="role" required>
     <option value="">Select Role</option>
     <option value="patient">Patient</option>
@@ -261,12 +402,33 @@ name="registration"
 placeholder="Registration Number">
 
 </div>
-<button type="submit" name="register">Register</button>
-
+<button type="submit" name="register">
+    <i class="fas fa-user-plus"></i> Register
+</button>
+<div class="text-center mt-3">
+    Already have an account?
+    <a href="login.php"><b>Login Here</b></a>
+</div>
 </form>
 
 </div>
 <script>
+    
+function togglePassword() {
+    let password = document.getElementById("password");
+    let eye = document.getElementById("eye");
+
+    if (password.type === "password") {
+        password.type = "text";
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+    } else {
+        password.type = "password";
+        eye.classList.remove("fa-eye-slash");
+        eye.classList.add("fa-eye");
+    }
+}
+
 
 const role=document.querySelector("select[name='role']");
 const doctorFields=document.getElementById("doctorFields");

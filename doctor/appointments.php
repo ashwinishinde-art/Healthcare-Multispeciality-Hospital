@@ -17,7 +17,6 @@ $result = mysqli_query($conn,
 WHERE doctor_name='$doctor'
 ORDER BY appointment_date");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
